@@ -3,23 +3,10 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const sequelize = require("./util/database.js");
 const User = require("./models/user");
-const CartItem = require("./models/cart-item");
+
 const Product = require("./models/Product");
-const Order = require("./models/order");
-const OrderItem = require("./models/order-item");
-const Cart = require("./models/cart");
 
 const app = express();
-
-Product.belongsTo(User, { constraints: true, onDelete: "CASCADE" });
-User.hasMany(Product);
-User.hasOne(Cart);
-Cart.belongsTo(User);
-Cart.belongsToMany(Product, { through: CartItem });
-Product.belongsToMany(Cart, { through: CartItem });
-Order.belongsTo(User);
-User.hasMany(Order);
-Order.belongsToMany(Product, { through: OrderItem });
 
 app.use(bodyParser.json());
 app.use(
@@ -29,14 +16,14 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(async (req, res, next) => {
-  const user = await User.findByPk(1);
-  if (!user) {
-    return res.status(500).json({ message: "User not found" });
-  }
-  req.user = user;
-  next();
-});
+// app.use(async (req, res, next) => {
+//   const user = await User.findByPk(1);
+//   if (!user) {
+//     return res.status(500).json({ message: "User not found" });
+//   }
+//   req.user = user;
+//   next();
+// });
 
 const apiRoutes = require("./routes/shop.js");
 const adminRoutes = require("./routes/admin.js");
