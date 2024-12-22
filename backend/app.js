@@ -1,56 +1,38 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const sequelize = require("./util/database.js");
+const mongoConnect = require("./util/database").mongoConnect;
 const User = require("./models/user");
-
-const Product = require("./models/Product");
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
+const errorController = require("./controllers/error");
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(
-  cors({
-    origin: "http://localhost:3000", // Chỉ cho phép yêu cầu từ frontend của bạn
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-// app.use(async (req, res, next) => {
-//   const user = await User.findByPk(1);
-//   if (!user) {
-//     return res.status(500).json({ message: "User not found" });
-//   }
-//   req.user = user;
-//   next();
-// });
+// Middleware
+app.use(bodyParser.json()); // Dùng để xử lý JSON
+app.use(cors()); // Cho phép ReactJS truy cập API
+app.use((req, res, next) => {
+  User.findById("5baa2528563f16379fc8a610")
+    .then((user) => {
+      req.user = new User(user.name, user.email, user.cart, user._id);
+      next();
+    })
+    .catch((err) => console.log(err));
+});
 
-const apiRoutes = require("./routes/shop.js");
-const adminRoutes = require("./routes/admin.js");
-
+// Routes
 app.use("/admin", adminRoutes);
-app.use("/api", apiRoutes);
+app.use("/shop", shopRoutes);
 
-sequelize
-  .sync({ alter: process.env.NODE_ENV !== "production" }) // Ensures tables are re-created; remove `force` for production
-  .then(() => {
-    return User.findByPk(1); // Updated method
-  })
-  .then((user) => {
-    if (!user) {
-      return User.create({ name: "Max", email: "test@test.com" });
-    }
-    return user;
-  })
-  .then((user) => {
-    console.log(user);
-    return user.createCart();
-  })
-  .then((cart) => {
-    app.listen(5000, () => {
-      console.log("Server is running on port 5000");
-    });
-  })
-  .catch((err) => {
-    console.error(err);
+// Xử lý lỗi 404
+app.use((req, res, next) => {
+  res.status(404).json({ message: "Route not found" });
+});
+
+// Kết nối MongoDB và chạy server
+mongoConnect(() => {
+  app.listen(5000, () => {
+    console.log("Server is running on http://localhost:5000");
   });
+});

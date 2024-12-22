@@ -1,33 +1,29 @@
-// const mysql = require("mysql2");
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
 
-// // Cấu hình kết nối
-// const pool = mysql.createPool({
-//   host: "localhost", // Thay bằng host của bạn
-//   user: "root", // Thay bằng username của bạn
-//   password: "123456", // Thay bằng password của bạn
-//   database: "products", // Tên database
-//   waitForConnections: true,
-//   connectionLimit: 10,
-//   queueLimit: 0,
-// });
+let _db;
 
-// // Xuất kết nối dưới dạng promise
-// const promisePool = pool.promise();
+const mongoConnect = (callback) => {
+  MongoClient.connect(
+    `mongodb+srv://kakasatoshi:Mnbv%400987@product.6wlp4.mongodb.net/?retryWrites=true&w=majority&appName=Product`
+  )
+    .then((client) => {
+      console.log("Connected!");
+      _db = client.db();
+      callback();
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+};
 
-// module.exports = promisePool;
+const getDb = () => {
+  if (_db) {
+    return _db;
+  }
+  throw "No database found!";
+};
 
-const { Sequelize } = require("sequelize");
-
-// Thiết lập kết nối với MySQL
-const sequelize = new Sequelize("products", "root", "123456", {
-  dialect: "mysql", // CSDL sử dụng
-  host: "localhost", // Địa chỉ server
-});
-
-// Kiểm tra kết nối
-sequelize
-  .authenticate()
-  .then(() => console.log("Database connected successfully"))
-  .catch((err) => console.error("Error connecting to the database:", err));
-
-module.exports = sequelize;
+exports.mongoConnect = mongoConnect;
+exports.getDb = getDb;
