@@ -13,13 +13,21 @@ const app = express();
 app.use(bodyParser.json()); // Dùng để xử lý JSON
 app.use(cors()); // Cho phép ReactJS truy cập API
 app.use((req, res, next) => {
-  User.findById("5baa2528563f16379fc8a610")
+  User.findById("676966641e524466025dc159")
     .then((user) => {
+      if (!user) {
+        console.error("User not found");
+        return next(); // Không có user, nhưng vẫn tiếp tục middleware
+      }
       req.user = new User(user.name, user.email, user.cart, user._id);
       next();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      next(err); // Gửi lỗi tới middleware xử lý lỗi
+    });
 });
+
 
 // Routes
 app.use("/admin", adminRoutes);
