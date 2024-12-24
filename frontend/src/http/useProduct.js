@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import useHttp from "./useHttp";
 
 var methodString = "GET";
-var str = "http://localhost:5000/api/";
+var str = "http://localhost:5000/shop/";
 const requestConfig = {
   url: str,
   method: methodString,

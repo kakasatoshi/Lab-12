@@ -1,11 +1,13 @@
-# GET http://localhost:5000/api/
+# GET http://localhost:5000/shop/
 
-POST http://localhost:5000/admin/add-product
-Content-Type: application/json
+# POST http://localhost:5000/admin/add-product
+# Content-Type: application/json
 
-{
-  "title": "Sample Product",
-  "imageUrl": "https://example.com/sample.jpg",
-  "price": 99.99,
-  "description": "This is a sample product description."
-}
+# {
+#   "title": "Sample Product",
+#   "imageUrl": "https://example.com/sample.jpg",
+#   "price": 99.99,
+#   "description": "This is a sample product description."
+# }
+
+GET http://localhost:5000/shop/products

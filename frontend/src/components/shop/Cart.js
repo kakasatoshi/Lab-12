@@ -15,7 +15,7 @@ const Cart = () => {
   const deleteItemHandler = (productId) => {
     console.log(productId);
     const requestConfig = {
-      url: "http://localhost:5000/api/cartDeleteItem",
+      url: "http://localhost:5000/shop/cartDeleteItem",
       method: "POST", // Hoặc "DELETE" nếu backend hỗ trợ
       headers: { "Content-Type": "application/json" },
       body: { productId: productId }, // Truyền productId đúng format
@@ -31,7 +31,7 @@ const Cart = () => {
   };
   const onOrderNow =  () => {
     const requestConfig = {
-      url: "http://localhost:5000/api/createOrder",
+      url: "http://localhost:5000/shop/createOrder",
       method: "POST", // Hoặc "DELETE" nếu backend h�� tr��
       // headers: { "Content-Type": "application/json" },
       // body: { cartItems: Carts }, // Truyền productId đúng format

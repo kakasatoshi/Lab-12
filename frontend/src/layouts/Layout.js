@@ -5,14 +5,14 @@ import css from "./layOut.module.css";
 // import http from "../http/useHttp";
 
 const Layout = () => {
-//   var methodString = "GET";
-//   var str = "http://localhost:5000/api/";
-//   const requestConfig = {
-//     url: str,
-//     method: "GET",
-//   };
-//   const { loading, error, Product } = http(requestConfig, methodString); //
-//   console.log(Product);
+  //   var methodString = "GET";
+  //   var str = "http://localhost:5000/shop/";
+  //   const requestConfig = {
+  //     url: str,
+  //     method: "GET",
+  //   };
+  //   const { loading, error, Product } = http(requestConfig, methodString); //
+  //   console.log(Product);
 
   return (
     <div>

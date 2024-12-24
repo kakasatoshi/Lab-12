@@ -10,7 +10,7 @@ const AddToCart = ({ id }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    const url = "http://localhost:5000/api/postCart";
+    const url = "http://localhost:5000/shop/postCart";
 
     const payload = {
       id: productId,

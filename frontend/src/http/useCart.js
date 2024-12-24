@@ -3,7 +3,7 @@
 // import useHttp from "./useHttp";
 
 // var methodString = "GET";
-// var str = "http://localhost:5000/api/cart";
+// var str = "http://localhost:5000/shop/cart";
 // const requestConfig = {
 //   url: str,
 //   method: methodString,
@@ -54,7 +54,7 @@ const useCarts = () => {
 
     sendRequest(
       {
-        url: "http://localhost:5000/api/cart",
+        url: "http://localhost:5000/shop/cart",
         method: "GET",
       },
       applyData

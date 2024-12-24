@@ -16,7 +16,7 @@ const ProductList = () => {
 
   useEffect(() => {
     const requestConfig = {
-      url: "http://localhost:5000/api/products", // Địa chỉ API của bạn
+      url: "http://localhost:5000/shop/products", // Địa chỉ API của bạn
     };
 
     sendRequest(requestConfig, applyData);

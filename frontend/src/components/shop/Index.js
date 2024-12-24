@@ -7,13 +7,13 @@ const Index = () => {
   const [products, setProducts] = useState([]);
   const applyData = (data) => {
     // Xử lý dữ liệu từ API
-    setProducts(data);
+    setProducts(data.products);
     console.log(data); // Hoặc cập nhật state hoặc render dữ liệu vào giao diện
   };
 
   useEffect(() => {
     const requestConfig = {
-      url: "http://localhost:5000/api/products", // Địa chỉ API của bạn
+      url: "http://localhost:5000/shop/products", // Địa chỉ API của bạn
     };
 
     sendRequest(requestConfig, applyData);
@@ -45,7 +45,7 @@ const Index = () => {
                   <p className="product__description">{product.description}</p>
                 </div>
                 <div className="card__actions">
-                  <AddToCart id={product.id} />
+                  <AddToCart id={product._id} />
                   {console.log(product, "product")}
                 </div>
               </article>

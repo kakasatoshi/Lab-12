@@ -12,7 +12,7 @@ const Orders = () => {
 
     sendRequest(
       {
-        url: "http://localhost:5000/api/orders",
+        url: "http://localhost:5000/shop/orders",
         method: "GET",
       },
       applyData
@@ -21,27 +21,26 @@ const Orders = () => {
 
   return (
     <>
-                 
-                <main>
-                    {orders.length <= 0 ? (
-                        <h1>Nothing there!</h1>
-                    ) : (
-                        <ul>
-                            {orders.map((order) => (
-                                <li key={order.id}>
-                                    <h1># {order.id}</h1>
-                                    <ul>
-                                        {order.products.map((product, index) => (
-                                            <li key={index}>
-                                                {product.title} ({product.orderItem.quantity})
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </main>
+      <main>
+        {orders.length <= 0 ? (
+          <h1>Nothing there!</h1>
+        ) : (
+          <ul>
+            {orders.map((order) => (
+              <li key={order.id}>
+                <h1># {order.id}</h1>
+                <ul>
+                  {order.products.map((product, index) => (
+                    <li key={index}>
+                      {product.title} ({product.orderItem.quantity})
+                    </li>
+                  ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        )}
+      </main>
     </>
   );
 };
