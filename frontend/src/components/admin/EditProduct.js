@@ -8,7 +8,7 @@ function EditProduct() {
   const location = useLocation();
   const navigate = useNavigate();
   const { editing, product } = location.state || {};
-  // console.log(product, "edit product");
+  // console.log(product, editing, "edit product");
 
   const [title, setTitle] = useState(editing ? product.title : "");
   const [imageUrl, setImageUrl] = useState(editing ? product.imageUrl : "");
@@ -30,8 +30,8 @@ function EditProduct() {
       imageUrl,
       price: parseFloat(price),
       description,
-      createdAt: "",
-      updatedAt: "",
+      // createdAt: "",
+      // updatedAt: "",
     };
 
     const requestConfig = {

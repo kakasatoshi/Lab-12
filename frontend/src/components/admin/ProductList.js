@@ -60,7 +60,7 @@ const ProductList = () => {
         {products.length > 0 ? (
           <div className="grid">
             {products.map((product) => (
-              <article className="card product-item" key={product.id}>
+              <article className="card product-item" key={product._id}>
                 <header className="card__header">
                   <h1 className="product__title">{product.title}</h1>
                 </header>
@@ -80,7 +80,7 @@ const ProductList = () => {
                   </button>
                   <button
                     className="btn"
-                    onClick={() => deleteProductHandler(product.id)}
+                    onClick={() => deleteProductHandler(product._id)}
                   >
                     Delete
                   </button>
