@@ -10,7 +10,7 @@ const ProductList = () => {
   const [products, setProducts] = useState([]);
   const applyData = (data) => {
     // Xử lý dữ liệu từ API
-    setProducts(data);
+    setProducts(data.products);
     // console.log(data); // Hoặc cập nhật state hoặc render dữ liệu vào giao diện
   };
 

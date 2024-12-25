@@ -19,7 +19,7 @@ exports.postAddProduct = (req, res, next) => {
     price,
     description,
     imageUrl,
-    null,
+    null
     // req.user._id
   );
   product

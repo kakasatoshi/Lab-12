@@ -10,4 +10,7 @@
 #   "description": "This is a sample product description."
 # }
 
+# GET http://localhost:5000/shop/products
+
+
 GET http://localhost:5000/shop/products
