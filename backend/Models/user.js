@@ -71,7 +71,7 @@ class User {
     });
     const db = getDb();
     return db
-      .collection("users")
+      .collection("Users")
       .updateOne(
         { _id: new ObjectId(this._id) },
         { $set: { cart: { items: updatedCartItems } } }
@@ -94,7 +94,7 @@ class User {
       .then((result) => {
         this.cart = { items: [] };
         return db
-          .collection("users")
+          .collection("Users")
           .updateOne(
             { _id: new ObjectId(this._id) },
             { $set: { cart: { items: [] } } }
@@ -111,17 +111,21 @@ class User {
   }
 
   static findById(userId) {
+    console.log("findById", userId.toString());
     const db = getDb();
-    return db
-      .collection("users")
-      .findOne({ _id: new ObjectId(userId) })
-      .then((user) => {
-        console.log(user);
-        return user;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    return (
+      db
+        .collection("Users")
+        .findOne({ _id: new ObjectId(userId) })
+        // .findOne({ _id: userId })
+        .then((user) => {
+          console.log(user);
+          return user;
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+    );
   }
 }
 
