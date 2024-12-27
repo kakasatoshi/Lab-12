@@ -3,7 +3,7 @@ import "../../css/main.css";
 import AddToCart from "../includes/AddToCart";
 const Product = (props) => {
   console.log("Productee", props);
-  const { id, title, imageUrl, price, description } = props.product;
+  const { _id, title, imageUrl, price, description } = props.product;
   console.log("Product", id, title, imageUrl, price, description);
   // console.log("Product", title, imageUrl, price, description);
   console.log("ProductID", id);
@@ -29,8 +29,8 @@ const Product = (props) => {
           <button onClick={() => console.log("Details clicked")}>
             Details
           </button>
-          <AddToCart id={id} />
-          {console.log(props.product.id, "product")}
+          <AddToCart id={_id} />
+          {console.log(props.product._id, "product")}
         </div>
       </form>
     </div>

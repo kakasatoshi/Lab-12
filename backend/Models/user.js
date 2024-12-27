@@ -19,7 +19,13 @@ class User {
   addToCart(product) {
     const cartProductIndex = this.cart.items.findIndex((cp) => {
       return cp.productId.toString() === product._id.toString();
+      // console.log(product._id, "--------------------------------ID: ");
     });
+    console.log(
+      product._id,
+      cartProductIndex,
+      "--------------------------------ID: "
+    );
     let newQuantity = 1;
     const updatedCartItems = [...this.cart.items];
 

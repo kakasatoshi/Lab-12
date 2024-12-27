@@ -13,4 +13,6 @@
 # GET http://localhost:5000/shop/products
 
 
-GET http://localhost:5000/shop/products
+ POST http://localhost:5000/shop/postCart
+ Content-Type: application/json
+ { id}

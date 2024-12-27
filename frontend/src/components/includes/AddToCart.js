@@ -13,7 +13,7 @@ const AddToCart = ({ id }) => {
     const url = "http://localhost:5000/shop/postCart";
 
     const payload = {
-      id: productId,
+      productId: productId,
     };
 
     const requestConfig = {
