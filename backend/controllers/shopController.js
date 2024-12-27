@@ -74,14 +74,18 @@ exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   console.log(
     prodId,
-    "\n --------------------------------=--  -------------------------------"
+    "\n -------------------------------Post Cart-------------------------------\n"
   );
   Product.findById(prodId)
     .then((product) => {
-      // console.log(product, req.user, "post Cart");
+      console.log(
+        req.user.addToCart(product),
+        "-----------------req.user.addToCart(product)---------------"
+      );
       return req.user.addToCart(product);
     })
     .then((result) => {
+      console.log(result);
       res.status(200).json({
         message: "Product added to cart",
         cart: result,

@@ -2,15 +2,15 @@ import React from "react";
 import "../../css/main.css";
 import AddToCart from "../includes/AddToCart";
 const Product = (props) => {
-  console.log("Productee", props);
+  // console.log("Productee", props);
   const { _id, title, imageUrl, price, description } = props.product;
-  console.log("Product", id, title, imageUrl, price, description);
+  // console.log("Product", _id, title, imageUrl, price, description);
   // console.log("Product", title, imageUrl, price, description);
-  console.log("ProductID", id);
+  // console.log("ProductID", _id);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log("Form submitted");
+    console.log(_id, "Form submitted");
 
     // Add your code to handle form submission here
   };
@@ -29,8 +29,8 @@ const Product = (props) => {
           <button onClick={() => console.log("Details clicked")}>
             Details
           </button>
-          <AddToCart id={_id} />
-          {console.log(props.product._id, "product")}
+          <AddToCart id={props.product._id} />
+          {/* {console.log(props.product._id, "product")} */}
         </div>
       </form>
     </div>

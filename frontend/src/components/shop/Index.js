@@ -8,7 +8,7 @@ const Index = () => {
   const applyData = (data) => {
     // Xử lý dữ liệu từ API
     setProducts(data.products);
-    console.log(data); // Hoặc cập nhật state hoặc render dữ liệu vào giao diện
+    // console.log(data); // Hoặc cập nhật state hoặc render dữ liệu vào giao diện
   };
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const Index = () => {
         {products.length > 0 ? (
           <div className="grid">
             {products.map((product) => (
-              <article className="card product-item" key={product.id}>
+              <article className="card product-item" key={product._id}>
                 <header className="card__header">
                   <h1 className="product__title">{product.title}</h1>
                 </header>

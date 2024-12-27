@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import useHttp from "../../http/useHttp";
 
 const AddToCart = ({ id }) => {
-  console.log("Product ID:", id);
+  // console.log("Product ID:", id);
   const [productId, setProductId] = useState(id);
-  console.log("State Product ID:", productId);
+  console.log("Add to Cart:", productId);
   const { isLoading: loading, error: err, sendRequest } = useHttp();
 
   const handleSubmit = async (event) => {
@@ -26,8 +26,10 @@ const AddToCart = ({ id }) => {
     try {
       await sendRequest(requestConfig);
       console.log("Product added to cart successfully");
+      return;
     } catch (error) {
       console.error("Error submitting form", error);
+      return;
     }
   };
 
@@ -36,7 +38,7 @@ const AddToCart = ({ id }) => {
       <button className="btn" type="submit">
         Add to Cart
       </button>
-      <input type="hidden" name="productId" value={id} />
+      {/* <input type="hidden" name="productId" value={id} /> */}
     </form>
   );
 };

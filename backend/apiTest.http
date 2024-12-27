@@ -1,18 +1,16 @@
 # GET http://localhost:5000/shop/
 
-# POST http://localhost:5000/admin/add-product
+# POST http://localhost:5000/shop/postCart
 # Content-Type: application/json
 
 # {
-#   "title": "Sample Product",
-#   "imageUrl": "https://example.com/sample.jpg",
-#   "price": 99.99,
-#   "description": "This is a sample product description."
+#     "productId": "676eb47a5cfa113abfe171d1"
 # }
 
 # GET http://localhost:5000/shop/products
 
 
- POST http://localhost:5000/shop/postCart
- Content-Type: application/json
- { id}
+#  POST http://localhost:5000/shop/postCart
+#         Content-Type: application/json
+
+#  { "productId": "676d11dda85fb3efc1f81598"}

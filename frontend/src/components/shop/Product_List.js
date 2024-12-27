@@ -45,8 +45,8 @@ const ProductList = () => {
     } catch (error) {
       console.error("Error submitting form", error);
     }
-    // navigate("/admin/ProductList");
-    window.location.reload();
+    navigate("/shop/products");
+    // window.location.reload();
   };
 
   const editProductHandler = (product) => {
@@ -61,7 +61,7 @@ const ProductList = () => {
         {products.length > 0 ? (
           <div className="grid">
             {products.map((product) => (
-              <Product product={product} key={product.id} />
+              <Product product={product} key={product._id} />
             ))}
           </div>
         ) : (

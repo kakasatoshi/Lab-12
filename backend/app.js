@@ -13,7 +13,7 @@ const app = express();
 app.use(bodyParser.json()); // Dùng để xử lý JSON
 app.use(cors()); // Cho phép ReactJS truy cập API
 app.use((req, res, next) => {
-  User.findById("676c0eaa5fe7e7f46cb8a270")
+  User.findById("676eb3be829015002764f5b5")
     .then((user) => {
       console.log(user, "user");
       if (!user) {

@@ -7,7 +7,7 @@ class User {
   constructor(username, email, cart, id) {
     this.name = username;
     this.email = email;
-    this.cart = cart; // {items: []}
+    this.cart = cart || { items: [] };
     this._id = id;
   }
 
@@ -17,21 +17,18 @@ class User {
   }
 
   addToCart(product) {
+    console.log(product, " Post Cart");
     const cartProductIndex = this.cart.items.findIndex((cp) => {
       return cp.productId.toString() === product._id.toString();
-      // console.log(product._id, "--------------------------------ID: ");
+      // console.log(, " Post Cart");
     });
-    console.log(
-      product._id,
-      cartProductIndex,
-      "--------------------------------ID: "
-    );
+    console.log(product._id, cartProductIndex, "model");
     let newQuantity = 1;
-    const updatedCartItems = [...this.cart.items];
+    const updatedCartItems = [...this.cart.items] || [];
 
     if (cartProductIndex >= 0) {
-      newQuantity = this.cart.items[cartProductIndex].quantity + 1;
-      updatedCartItems[cartProductIndex].quantity = newQuantity;
+      const newCartItems = this.cart.items[cartProductIndex].quantity + 1;
+      updatedCartItems[cartProductIndex].quantity = newCartItems;
     } else {
       updatedCartItems.push({
         productId: new ObjectId(product._id),
@@ -77,7 +74,7 @@ class User {
     });
     const db = getDb();
     return db
-      .collection("Users")
+      .collection("users")
       .updateOne(
         { _id: new ObjectId(this._id) },
         { $set: { cart: { items: updatedCartItems } } }
@@ -100,7 +97,7 @@ class User {
       .then((result) => {
         this.cart = { items: [] };
         return db
-          .collection("Users")
+          .collection("users")
           .updateOne(
             { _id: new ObjectId(this._id) },
             { $set: { cart: { items: [] } } }
@@ -117,11 +114,11 @@ class User {
   }
 
   static findById(userId) {
-    console.log("findById", userId.toString());
+    // console.log("findById", userId.toString());
     const db = getDb();
     return (
       db
-        .collection("Users")
+        .collection("users")
         .findOne({ _id: new ObjectId(userId) })
         // .findOne({ _id: userId })
         .then((user) => {
