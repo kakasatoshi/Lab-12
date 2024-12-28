@@ -118,6 +118,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
 };
 
 exports.postOrder = (req, res, next) => {
+  console.log("POST Order");
   let fetchedCart;
   req.user
     .getCart()

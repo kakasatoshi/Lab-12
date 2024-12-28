@@ -14,3 +14,8 @@
 #         Content-Type: application/json
 
 #  { "productId": "676d11dda85fb3efc1f81598"}
+
+# GET http://localhost:5000/shop/cart 
+
+
+POST http://localhost:5000/shop/createOrder

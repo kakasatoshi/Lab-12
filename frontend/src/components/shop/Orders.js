@@ -21,7 +21,7 @@ const Orders = () => {
 
   return (
     <>
-      <main>
+      {/* <main>
         {orders.length <= 0 ? (
           <h1>Nothing there!</h1>
         ) : (
@@ -40,7 +40,7 @@ const Orders = () => {
             ))}
           </ul>
         )}
-      </main>
+      </main> */}
     </>
   );
 };

@@ -29,7 +29,7 @@ const MyNavBar = () => {
               </a>
             </li>
             <li className="main-header__item">
-              <a className={isActive("/orders")} href="/orders">
+              <a className={isActive("/shop/orders")} href="/shop/orders">
                 Orders
               </a>
             </li>

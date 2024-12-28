@@ -4,7 +4,7 @@ import useHttp from "../../http/useHttp";
 const AddToCart = ({ id }) => {
   // console.log("Product ID:", id);
   const [productId, setProductId] = useState(id);
-  console.log("Add to Cart:", productId);
+  // console.log("Add to Cart:", productId);
   const { isLoading: loading, error: err, sendRequest } = useHttp();
 
   const handleSubmit = async (event) => {

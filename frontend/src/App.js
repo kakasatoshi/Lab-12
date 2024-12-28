@@ -51,7 +51,7 @@ const router = createBrowserRouter([
         // loader: authLoader,
       },
       {
-        path: "/orders",
+        path: "/shop/orders",
         element: <Orders />,
         // loader: authLoader,
       },

@@ -6,12 +6,26 @@ import "../../css/cart.css";
 
 const Cart = () => {
   const navigate = useNavigate();
-  // const [loading, err, products] = useProducts();
-  const { isLoading: loading, error: err, Carts } = useCarts();
-  // console.log(Carts, "cart");
   const { isLoading, error, sendRequest } = useHttp();
+  const [carts, setCarts] = useState([]);
   const [show, setShow] = useState(false);
-  // console.log(Carts,"Cart");
+
+  const applyData = (data) => {
+    console.log(data);
+    setCarts(data.cart);
+    // console.log(data); // Hoặc cập nhật state hoặc render dữ liệu vào giao diện
+  };
+
+  useEffect(() => {
+    const requestConfig = {
+      url: "http://localhost:5000/shop/cart", // Địa chỉ API của bạn
+    };
+
+    sendRequest(requestConfig, applyData);
+  }, []); // Gọi lại sendRequest khi component mount
+
+  // const cart = Carts.cart || [];
+
   const deleteItemHandler = (productId) => {
     console.log(productId);
     const requestConfig = {
@@ -24,12 +38,13 @@ const Cart = () => {
     sendRequest(requestConfig, (responseData) => {
       // Sau khi xóa thành công, cập nhật lại giỏ hàng hoặc xử lý tương tự
       console.log("", responseData);
+      setShow(!show);
+      navigate("/shop/cart");
     });
-    setShow(true);
-    // navigate("/shop/cart");
+
     window.location.reload();
   };
-  const onOrderNow =  () => {
+  const onOrderNow = () => {
     const requestConfig = {
       url: "http://localhost:5000/shop/createOrder",
       method: "POST", // Hoặc "DELETE" nếu backend h�� tr��
@@ -37,29 +52,28 @@ const Cart = () => {
       // body: { cartItems: Carts }, // Truyền productId đúng format
     };
     sendRequest(requestConfig);
-    
 
-    navigate("/shop/Orders");
+    navigate("/shop/orders");
   };
 
   return (
     // <></>
     <div>
       <main>
-        {Carts.length > 0 ? (
+        {carts.length > 0 ? (
           <>
             <ul className="cart__item-list">
-              {Carts.map((product) => (
-                <li key={product.id} className="cart__item">
+              {carts.map((product) => (
+                <li key={product._id} className="cart__item">
                   <h1>{product.title}</h1>
-                  <h2>Quantity: {product.cartItem.quantity}</h2>
+                  <h2>Quantity: {product.quantity}</h2>
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
-                      deleteItemHandler(product.id);
+                      deleteItemHandler(product._id);
                     }}
                   >
-                    <input type="hidden" value={product.id} name="productId" />
+                    <input type="hidden" value={product._id} name="productId" />
                     <button className="btn danger" type="submit">
                       Delete
                     </button>

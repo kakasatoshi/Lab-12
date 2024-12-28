@@ -16,7 +16,7 @@ const Product = (props) => {
   };
   return (
     <div className={"Cart"}>
-      <form className={"product-form"} onSubmit={handleSubmit}>
+      <div className={"product-form"}>
         <div className={"product-item"}>
           <h2 className={"product__title"}>{title}</h2>
           <div className={"card__image"}>
@@ -25,14 +25,15 @@ const Product = (props) => {
 
           <p className={"product__price"}>{price}</p>
           <p className={"product__description"}>{description}</p>
-
-          <button onClick={() => console.log("Details clicked")}>
-            Details
-          </button>
+          <form className={"product-form"} onSubmit={handleSubmit}>
+            <button onClick={() => console.log("Details clicked")}>
+              Details
+            </button>
+          </form>
           <AddToCart id={props.product._id} />
           {/* {console.log(props.product._id, "product")} */}
         </div>
-      </form>
+      </div>
     </div>
   );
 };
