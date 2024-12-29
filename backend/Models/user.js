@@ -82,6 +82,7 @@ class User {
   }
 
   addOrder() {
+    console.log("Add Order");
     const db = getDb();
     return this.getCart()
       .then((products) => {
@@ -90,12 +91,14 @@ class User {
           user: {
             _id: new ObjectId(this._id),
             name: this.name,
+            email: this.email,
           },
         };
         return db.collection("orders").insertOne(order);
       })
       .then((result) => {
         this.cart = { items: [] };
+        console.log("Delete Cart when update Order");
         return db
           .collection("users")
           .updateOne(

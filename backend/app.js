@@ -15,7 +15,7 @@ app.use(cors()); // Cho phép ReactJS truy cập API
 app.use((req, res, next) => {
   User.findById("676eb3be829015002764f5b5")
     .then((user) => {
-      console.log(user, "user");
+      // console.log(user, "user");
       if (!user) {
         console.error("User not found");
         return next(); // Không có user, nhưng vẫn tiếp tục middleware

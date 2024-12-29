@@ -18,4 +18,6 @@
 # GET http://localhost:5000/shop/cart 
 
 
-POST http://localhost:5000/shop/createOrder
+# POST http://localhost:5000/shop/createOrder 
+
+GET http://localhost:5000/shop/orders

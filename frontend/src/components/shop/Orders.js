@@ -5,34 +5,33 @@ const Orders = () => {
   const { isLoading, error, sendRequest } = useHttp();
   const [orders, setOrders] = useState([]);
 
+  const applyData = (data) => {
+    console.log(data);
+    setOrders(data.orders);
+  };
+
   useEffect(() => {
-    const applyData = (data) => {
-      setOrders(data);
+    const requestConfig = {
+      url: "http://localhost:5000/shop/orders", // Địa chỉ API của bạn
     };
 
-    sendRequest(
-      {
-        url: "http://localhost:5000/shop/orders",
-        method: "GET",
-      },
-      applyData
-    );
+    sendRequest(requestConfig, applyData);
   }, []);
 
   return (
     <>
-      {/* <main>
+      <main>
         {orders.length <= 0 ? (
           <h1>Nothing there!</h1>
         ) : (
           <ul>
             {orders.map((order) => (
               <li key={order.id}>
-                <h1># {order.id}</h1>
+                <h1># {order._id}</h1>
                 <ul>
-                  {order.products.map((product, index) => (
+                  {order.items.map((product, index) => (
                     <li key={index}>
-                      {product.title} ({product.orderItem.quantity})
+                      {product.title} ({product.quantity})
                     </li>
                   ))}
                 </ul>
@@ -40,7 +39,7 @@ const Orders = () => {
             ))}
           </ul>
         )}
-      </main> */}
+      </main>
     </>
   );
 };
